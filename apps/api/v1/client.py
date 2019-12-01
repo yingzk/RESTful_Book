@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 from flask import request
 
 from apps.forms.client import RegisterForm
 from apps.models.user import UserModel
-from libs.error.error import Success
+from libs.error.success import Success
 from libs.redprints import Redprint
 
 __author__ = 'YingJoy'

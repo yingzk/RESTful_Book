@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from sqlalchemy import orm
 from sqlalchemy.dialects.mysql import TINYINT, DECIMAL
 from werkzeug.security import generate_password_hash
 
@@ -19,6 +20,21 @@ class UserModel(BaseModel):
     _password = db.Column(db.String(128), name='password', nullable=False, comment='密码，SHA加密')
     type = db.Column(db.SmallInteger, default=1, nullable=False, comment='用户类型')
     status = db.Column(db.SmallInteger, default=1, nullable=False, comment='用户状态')
+
+    @orm.reconstructor
+    def __init__(self):
+        self.fields = ['name', 'gender', 'amount', 'type', 'status', 'password']
+
+    def keys(self):
+        return self.fields
+
+    def hide(self, *args):
+        [self.fields.remove(item) for item in args]
+        return self
+
+    def append(self, *args):
+        [self.fields.append(item) for item in args]
+        return self
 
     @property
     def password(self):

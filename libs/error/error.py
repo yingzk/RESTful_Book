@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+
 from libs.error import APIException
 
 __author__ = 'YingJoy'
 
 
-class Success(APIException):
-    code = 200
-    error_code = 0
-    msg = 'ok'
+class EncoderError(APIException):
+    code = 500
+    error_code = 1003
+    msg = 'Encoder Error'
 
 
 class ServerError(APIException):

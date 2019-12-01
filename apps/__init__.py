@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+from .app import Flask
 
 from apps.models import db
 from libs.error import APIException
